@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<h2>Add Vehicles</h2>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li class="bg-primary">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.v_type.label }}<br>
+        {{ form.v_type }}
+        {% for error in form.v_type.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.manufacturer.label }}<br>
+        {{ form.manufacturer(size=50, placeholder="Ex: Ford") }}
+        {% for error in form.manufacturer.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.model.label }}<br>
+        {{ form.model(size=50, placeholder="Ex: Fiesta") }}
+        {% for error in form.model.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+        <p>
+        {{ form.color.label }}<br>
+        {{ form.color(size=50, placeholder="Ex: Red") }}
+        {% for error in form.color.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.engine.label }}<br>
+        {{ form.engine(placeholder="Ex: 1000") }}
+        {% for error in form.engine.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.mileage.label }}<br>
+        {{ form.mileage(placeholder="Ex: 50000") }}
+        {% for error in form.mileage.errors %}
+        <span class="bg-danger">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
