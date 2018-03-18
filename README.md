@@ -4,13 +4,14 @@ Projeto Web Python 2.7 com a microframework Flask e Flask-SQLAlchemy. A aplicaç
 
 ## Configuração
 ### Máquina Virtual
-É recomendável utilizar uma máquina virtual python para executar o projeto. Entretanto, caso desejável executar o projeto o interpretador previamente instalado, pule para o próximo tópico. 
+É recomendável utilizar uma máquina virtual python para executar o projeto. Entretanto, caso desejável executar o projeto com o interpretador previamente instalado, pule para o próximo tópico. 
 
 Para criar a máquina virtual, basta executar o seguintes comando:
 ```bash
 virtualenv venv
 ```
-É possível que você tenha que instalar a virtualenv na sua máquina.
+OBS: É possível que você tenha que instalar a [virtualenv](https://virtualenv.pypa.io/en/stable/installation/) antes na sua máquina.
+
 Em seguida, ative a máquina virtual executando o seguinte comando:
 
 Linux:
