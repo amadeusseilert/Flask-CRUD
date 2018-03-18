@@ -3,11 +3,11 @@ from wtforms import StringField, SubmitField, SelectField, IntegerField, Boolean
 from wtforms.validators import DataRequired, Length, NumberRange, InputRequired
 from wtforms.widgets.html5 import NumberInput
 
-from app.models import VEHICLE_TYPES
+from app.models import Vehicle
 
 
 class AddVehicleForm(FlaskForm):
-    v_type = SelectField('Type', choices=[(t, t) for t in VEHICLE_TYPES])
+    v_type = SelectField('Type', choices=[(t, t) for t in Vehicle.VEHICLE_TYPES])
     manufacturer = StringField('Manufacturer', validators=[DataRequired(), Length(min=1, max=50)])
     model = StringField('Model', validators=[DataRequired(), Length(min=1, max=50)])
     color = StringField('Color', validators=[DataRequired(), Length(min=1, max=50)])
@@ -21,7 +21,7 @@ class AddVehicleForm(FlaskForm):
 
 
 class UpdateVehicleForm(FlaskForm):
-    v_type = SelectField('Type', choices=[(t, t) for t in VEHICLE_TYPES])
+    v_type = SelectField('Type', choices=[(t, t) for t in Vehicle.VEHICLE_TYPES])
     manufacturer = StringField('Manufacturer', validators=[DataRequired(), Length(min=1, max=50)])
     model = StringField('Model', validators=[DataRequired(), Length(min=1, max=50)])
     color = StringField('Color', validators=[DataRequired(), Length(min=1, max=50)])
@@ -80,7 +80,7 @@ def search_vehicles_form_builder(form):
 
             return True
 
-    for vt in VEHICLE_TYPES:
+    for vt in Vehicle.VEHICLE_TYPES:
         setattr(SearchVehicleForm, vt, BooleanField(default=True, label=vt))
 
     setattr(SearchVehicleForm, 'submit', SubmitField('Go'))

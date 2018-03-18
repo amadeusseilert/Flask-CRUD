@@ -35,10 +35,10 @@ class TestVehicleAdd(TestCase):
     def test_add_vehicle_post(self):
 
         form = AddVehicleForm(formdata=None)
-        form.v_type.data = 'Car'
-        form.manufacturer.data = 'Honda'
-        form.model.data = 'Civic'
-        form.color.data = 'White'
+        form.v_type.data = u'Car'
+        form.manufacturer.data = u'Honda'
+        form.model.data = u'Civic'
+        form.color.data = u'White'
         form.engine.data = 1800
         form.mileage.data = 4000
 
@@ -47,7 +47,7 @@ class TestVehicleAdd(TestCase):
         with self.test_client.session_transaction():
             response = self.test_client.post('/add', data=form.data, follow_redirects=True)
 
-        v = Vehicle.query.filter(Vehicle.model == 'Civic').one_or_none()
+        v = Vehicle.query.filter(Vehicle.model == u'Civic').one_or_none()
         self.assertEqual(response._status_code, 200)
         self.assertEqual(len(Vehicle.query.all()), 1)
         self.assertIsNotNone(v)

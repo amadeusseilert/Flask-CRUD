@@ -30,9 +30,9 @@ def init_db(config):
         db.create_all()
         db.session.commit()
 
-        v1 = models.Vehicle(models.VehicleTypes.CAR, u'Fiat', u'Uno', u'Red', 1000, 0)
-        v2 = models.Vehicle(models.VehicleTypes.CAR, u'Volkswagen', u'Fox', u'Silver', 1600, 10000)
-        v3 = models.Vehicle(models.VehicleTypes.MOTORCYCLE, u'BMW', u'G 310 R', u'White', 313, 5000)
+        v1 = models.Vehicle(u'Car', u'Fiat', u'Uno', u'Red', 1000, 0)
+        v2 = models.Vehicle(u'Car', u'Volkswagen', u'Fox', u'Silver', 1600, 10000)
+        v3 = models.Vehicle(u'Motorcycle', u'BMW', u'G 310 R', u'White', 313, 5000)
 
         db.session.add(v1)
         db.session.add(v2)

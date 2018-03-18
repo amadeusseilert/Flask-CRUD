@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+
+</div>
+
+
+<div class="container">
+    <h2>Search Vehicles</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <div class="container">
+            {% for f in types %}
+            <div class="d-inline">
+                {{ f}} {{ f.label }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.manufacturer.label }}:
+                {{ form.manufacturer(size=25, placeholder="Ex: Ford") }}
+                {% for error in form.manufacturer.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.model.label }}:
+                {{ form.model(size=25, placeholder="Ex: Red") }}
+                {% for error in form.model.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.color.label }}:
+                {{ form.color(size=25, placeholder="Ex: Red") }}
+                {% for error in form.color.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                {{ form.min_engine.label }}:
+                {{ form.min_engine(size=5, min=1, max=10000) }}
+                {% for error in form.min_engine.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-3">
+                {{ form.max_engine.label }}:
+                {{ form.max_engine(size=5, min=1, max=10000) }}<br>
+                {% for error in form.max_engine.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-3">
+                {{ form.min_mileage.label }}:
+                {{ form.min_mileage(size=5, min=0, max=200000) }}
+                {% for error in form.min_mileage.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group col-md-3">
+                {{ form.max_mileage.label }}:
+                {{ form.max_mileage(size=5, min=0, max=200000) }}<br>
+                {% for error in form.max_mileage.errors %}
+                <span class="bg-danger">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        {{ form.submit(class_="btn btn-primary float-right") }}
+    </form>
+</div>
+<div class="container">
+    <h2>All Vehicles</h2>
+    <table class="table table-striped">
+        <th>#
+        <th>Type</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>Engine</th>
+        <th>Mileage (km)</th>
+        <th></th>
+        <th></th>
+        {% for v in vehicles %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ v.v_type }}</td>
+            <td>{{ v.manufacturer }}</td>
+            <td>{{ v.model }}</td>
+            <td>{{ v.color }}</td>
+            <td>{{ v.engine_label }}</td>
+            <td>{{ v.mileage_label }}</td>
+            <td>
+                <form method=post action="{{ url_for('admin.delete', vehicle_id=v.id) }}">
+                    <button class='btn btn-danger' type=submit>Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method=get action="{{ url_for('admin.update', vehicle_id=v.id) }}">
+                    <button class='btn btn-warning' type=submit>Update</button>
+                </form>
+            </td>
+        <tr>
+            {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}

@@ -38,7 +38,7 @@ class TestVehicleDelete(TestCase):
         with self.test_client.session_transaction():
             response = self.test_client.post('/' + str(v2.id) + '/delete', follow_redirects=True)
 
-        v = Vehicle.query.filter(Vehicle.model == 'Fox').one_or_none()
+        v = Vehicle.query.filter(Vehicle.model == u'Fox').one_or_none()
         self.assertEqual(response._status_code, 200)
         self.assertEqual(len(Vehicle.query.all()), 1)
         self.assertIsNone(v)

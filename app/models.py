@@ -1,10 +1,9 @@
 from app.instance import db
 
 
-VEHICLE_TYPES = ['Car', 'Motorcycle']
-
-
 class Vehicle(db.Model):
+
+    VEHICLE_TYPES = ['Car', 'Motorcycle']
 
     id = db.Column(db.Integer, primary_key=True)
     v_type = db.Column(db.String(50))
@@ -39,13 +38,13 @@ class Vehicle(db.Model):
             cls.mileage <= max_mileage)
 
         if color:
-            q = q.filter(cls.color.like('%' + color + '%'))
+            q = q.filter(cls.color.ilike('%' + color + '%'))
 
         if manufacturer:
-            q = q.filter(cls.manufacturer.like('%' + manufacturer + '%'))
+            q = q.filter(cls.manufacturer.ilike('%' + manufacturer + '%'))
 
         if model:
-            q = q.filter(cls.model.like('%' + model + '%'))
+            q = q.filter(cls.model.ilike('%' + model + '%'))
 
         return q.all()
 

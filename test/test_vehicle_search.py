@@ -33,7 +33,7 @@ class TestVehicleSearch(TestCase):
         self.db.session.add(v2)
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle'], '', '', '', 1, 10000, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle'], '', '', '', 1, 10000, 0, 200000)
         self.assertEqual(len(vv), 0)
 
     def test_search_type_2(self):
@@ -44,7 +44,7 @@ class TestVehicleSearch(TestCase):
         self.db.session.add(v2)
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle'], '', '', '', 1, 10000, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle'], '', '', '', 1, 10000, 0, 200000)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v2.id)
 
@@ -59,7 +59,7 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], 'Honda', '', '', 1, 10000, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], u'Honda', '', '', 1, 10000, 0, 200000)
         self.assertEqual(set(vv), {v2, v3})
 
     def test_search_model(self):
@@ -71,7 +71,7 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], '', 'Uno', '', 1, 10000, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], '', u'Uno', '', 1, 10000, 0, 200000)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v1.id)
 
@@ -84,7 +84,7 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], '', '', '', 126, 10000, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], '', '', '', 126, 10000, 0, 200000)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v1.id)
 
@@ -97,7 +97,7 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], '', '', '', 1, 125, 0, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], '', '', '', 1, 125, 0, 200000)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v2.id)
 
@@ -110,7 +110,7 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], '', '', '', 1, 10000, 0, 0)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], '', '', '', 1, 10000, 0, 0)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v1.id)
 
@@ -123,6 +123,6 @@ class TestVehicleSearch(TestCase):
 
         self.db.session.commit()
 
-        vv = Vehicle.perform_search(['Motorcycle', 'Car'], '', '', '', 1, 10000, 10000, 200000)
+        vv = Vehicle.perform_search([u'Motorcycle', u'Car'], '', '', '', 1, 10000, 10000, 200000)
         self.assertEqual(len(vv), 1)
         self.assertEqual(vv[0].id, v2.id)

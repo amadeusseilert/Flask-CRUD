@@ -36,16 +36,16 @@ class TestVehicleUpdate(TestCase):
         self.db.session.commit()
 
         form = UpdateVehicleForm(formdata=None, obj=v1)
-        form.v_type.data = 'Motorcycle'
-        form.manufacturer.data = 'Yamaha'
-        form.model.data = 'Tenere'
+        form.v_type.data = u'Motorcycle'
+        form.manufacturer.data = u'Yamaha'
+        form.model.data = u'Tenere'
         form.engine.data = 250
 
         with self.test_client.session_transaction():
             response = self.test_client.post('/' + str(v1.id) + '/update', data=form.data, follow_redirects=True)
 
         self.assertEqual(response._status_code, 200)
-        self.assertEqual(v1.v_type, 'Motorcycle')
-        self.assertEqual(v1.manufacturer, 'Yamaha')
-        self.assertEqual(v1.model, 'Tenere')
+        self.assertEqual(v1.v_type, u'Motorcycle')
+        self.assertEqual(v1.manufacturer, u'Yamaha')
+        self.assertEqual(v1.model, u'Tenere')
         self.assertEqual(v1.engine, 250)
