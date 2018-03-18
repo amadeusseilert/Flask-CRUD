@@ -37,4 +37,4 @@ Em seguida, inicialize a aplicação:
 python run.py
 ```
 
-Pronto, para acessar aplicação, basta acessar a URL [localhost:5000](http://127.0.0.1:5000): 
+Pronto, para acessar aplicação, basta acessar a URL [localhost:5000/admin](http://127.0.0.1:5000/admin): 
